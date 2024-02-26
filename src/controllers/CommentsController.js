@@ -16,13 +16,13 @@ class CommentsController {
         response.json();
     }
 
-    // async show(request, response) {
-    //     const { id } = request.params;
+    async show(request, response) {
+        const { id } = request.params;
 
-    //     const post = await knex("posts").where({ id }).first();
+        const comment = await knex("comments").where({ id }).first();
 
-    //     return response.json(post)
-    // }
+        return response.json(comment)
+    }
 
     // async delete(request, response) {
     //     const { id } = request.params;
