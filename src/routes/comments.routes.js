@@ -7,6 +7,6 @@ const commentsRoutes = Router();
 const commentsController = new CommentsController();
 
 commentsRoutes.post("/:post_id", commentsController.create);
-// commentsRoutes.get("/:id", commentsController.show);
+commentsRoutes.get("/:id", commentsController.show);
 
 module.exports = commentsRoutes;

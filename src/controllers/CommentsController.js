@@ -5,7 +5,7 @@ class CommentsController {
         const { content } = request.body;
         const { post_id } = request.params;
         const [user] = await knex("posts").where({ id: post_id })
-        const user_id = user.id
+        const user_id = String(user.id)
 
         const [comment_id] = await knex("comments").insert({
             content,
