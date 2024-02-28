@@ -11,8 +11,10 @@ class UsersController {
             throw new AppError("Todos os campos são obrigatórios.")
         }
 
-        const database = await sqliteConnection();
-        const checkUserExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
+        // const database = await sqliteConnection();
+        // const checkUserExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
+        const [checkUserExists] = await knex("users").where({ email });
+        
 
         if(checkUserExists){
             throw new AppError("Este e-mail já está em uso.");
@@ -20,10 +22,15 @@ class UsersController {
 
         const hashedPassword = await hash(password, 8);
 
-        await database.run(
-            "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-            [name, email, hashedPassword]
-        );
+        // await database.run(
+        //     "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+        //     [name, email, hashedPassword]
+        // );
+        await knex("users").insert(({
+            name,
+            email,
+            password: hashedPassword
+        }));
 
         return response.status(201).json();
     }
@@ -33,13 +40,15 @@ class UsersController {
         const { id } = request.params;
 
         const database = await sqliteConnection();
-        const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+        // const user = await database.get("SELECT * FROM users WHERE id = (?)", [id]);
+        const [user] = await knex("users").where({ id });
 
         if(!user){
             throw new AppError("Usuário não encontrado.");
         }
 
-        const userWithUpdatedEmail = await database.get("SELECT * FROM users WHERE email = (?)", [email]);
+        // const userWithUpdatedEmail = await database.get("SELECT * FROM users WHERE email = (?)", [email]);
+        const [userWithUpdatedEmail] = await knex("users").where({ email });
 
         if(userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
             throw new AppError("Este e-mail já está em uso");
@@ -82,7 +91,6 @@ class UsersController {
 
         return response.json();
     }   
-
 }
 
 module.exports = UsersController;
