@@ -19,7 +19,13 @@ class PostsController {
 
         const post = await knex("posts").where({ id }).first();
 
-        return response.json(post)
+        const comments = await knex("comments").where({ post_id: id })
+        console.log(comments)
+
+        return response.json({
+            ...post,
+            comments
+        })
     }
 
     async delete(request, response) {
