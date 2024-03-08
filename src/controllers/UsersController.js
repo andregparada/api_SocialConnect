@@ -89,6 +89,10 @@ class UsersController {
 
         const user = await knex("users").where({ id }).first();
 
+        if (!user) {
+            throw new AppError("Usuário não encontrado.")
+        }
+
         return response.json(user)
     }
 

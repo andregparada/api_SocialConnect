@@ -1,4 +1,5 @@
 const knex = require("../database/knex");
+const AppError = require("../utils/AppError");
 
 class PostsController {
     async create(request, response) {
@@ -19,8 +20,11 @@ class PostsController {
 
         const post = await knex("posts").where({ id }).first();
 
+        if(!post) {
+            throw new AppError("Post não encontrado.")
+        }
+
         const comments = await knex("comments").where({ post_id: id })
-        console.log(comments)
 
         return response.json({
             ...post,
@@ -30,6 +34,13 @@ class PostsController {
 
     async delete(request, response) {
         const { id } = request.params;
+        const user_id = request.user.id;
+
+        const [post] = await knex("posts").where({ id });
+
+        if(post.user_id !== user_id) {
+            throw new AppError("Você só pode deletar posts seus!")
+        }
 
         await knex("posts").where({ id }).delete();
 
