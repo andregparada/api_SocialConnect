@@ -3,7 +3,7 @@ const knex = require("../database/knex");
 class PostsController {
     async create(request, response) {
         const { title, content } = request.body;
-        const { user_id } = request.params;
+        const user_id = request.user.id;
 
         const [post_id] = await knex("posts").insert({
             title,
