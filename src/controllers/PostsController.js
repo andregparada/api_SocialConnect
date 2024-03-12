@@ -44,7 +44,7 @@ class PostsController {
         }
 
         if(post.user_id !== user_id) {
-            throw new AppError("Você só pode deletar posts seus!")
+            throw new AppError("Você só pode atualizar posts seus!")
         }
 
         post.content = content ?? post.content;

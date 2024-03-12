@@ -11,6 +11,7 @@ commentsRoutes.use(ensureAuthenticated);
 
 commentsRoutes.post("/:post_id", commentsController.create);
 commentsRoutes.get("/:id", commentsController.show);
+commentsRoutes.put("/:id", commentsController.update);
 commentsRoutes.delete("/:id", commentsController.delete);
 
 module.exports = commentsRoutes;

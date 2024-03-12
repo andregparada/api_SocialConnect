@@ -32,6 +32,28 @@ class CommentsController {
         return response.json(comment)
     }
 
+    async update(request, response) {
+        const { id } = request.params;
+        const { content } = request.body
+        const user_id = request.user.id;
+
+        const comment = await knex("comments").where({ id }).first();
+
+        if(!comment) {
+            throw new AppError("Comentário não encontrado.")
+        }
+
+        if(comment.user_id !== user_id) {
+            throw new AppError("Você só pode atulizar comentários seus!")
+        }
+
+        comment.content = content ?? comment.content;
+
+        await knex("comments").update(comment).where({ id });
+
+        return response.json();
+    }
+
     async delete(request, response) {
         const { id } = request.params;
         const user_id = request.user.id;
