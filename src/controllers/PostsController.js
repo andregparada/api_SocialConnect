@@ -32,11 +32,33 @@ class PostsController {
         })
     }
 
+    async update(request, response) {
+        const { id } = request.params;
+        const { content } = request.body
+        const user_id = request.user.id;
+
+        const post = await knex("posts").where({ id }).first();
+
+        if(!post) {
+            throw new AppError("Post não encontrado.")
+        }
+
+        if(post.user_id !== user_id) {
+            throw new AppError("Você só pode deletar posts seus!")
+        }
+
+        post.content = content ?? post.content;
+
+        await knex("posts").update(post).where({ id });
+
+        return response.json();
+    }
+
     async delete(request, response) {
         const { id } = request.params;
         const user_id = request.user.id;
 
-        const [post] = await knex("posts").where({ id });
+        const post = await knex("posts").where({ id }).first();
 
         if(post.user_id !== user_id) {
             throw new AppError("Você só pode deletar posts seus!")
