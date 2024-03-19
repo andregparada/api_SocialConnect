@@ -1,9 +1,51 @@
-API SoicialConnect
+<h1 color="blue">SocialConnect API</h1>h1>
+Este é o repositório da API RESTful desenvolvida para a SocialConnect, uma plataforma de rede social fictícia criada como exercício de desenvolvimento Backend. A API permite aos usuários realizar operações CRUD nas entidades Usuário, Post e Comentário.
 
-Esse projeto é um exercício de desenvolvimento backend, no qual a proposta foi criar a API REST de uma plataforma de rede social. Nesta, usuários podem compartilhar posts, interagir com outros usuários e deixar comentários em postagens. A aplicação possui 3 entidades: Usuário, Post e Comentário. Cada um deles realiza operações CRUD.
+Requisitos
+Node.js
+Express.js
+SQLite or MySQL
+Instalação
+Clone o repositório: git clone https://github.com/seu-usuario/socialconnect-api.git
+Instale as dependências: npm install
+Configuração do Banco de Dados
+Execute as migrações para criar as tabelas: npm run migrate
+(Opcional) Preencha o banco de dados com dados de exemplo: npm run seed
+Uso
+Inicie o servidor: npm start
+Acesse a API em: http://localhost:3000
+Endpoints
+Usuários
+GET /api/users: Retorna todos os usuários
+GET /api/users/:id: Retorna um usuário específico
+POST /api/users: Cria um novo usuário
+PUT /api/users/:id: Atualiza um usuário existente
+DELETE /api/users/:id: Exclui um usuário
+Posts
+GET /api/posts: Retorna todos os posts
+GET /api/posts/:id: Retorna um post específico
+POST /api/posts: Cria um novo post
+PUT /api/posts/:id: Atualiza um post existente
+DELETE /api/posts/:id: Exclui um post
+Comentários
+GET /api/comments: Retorna todos os comentários
+GET /api/comments/:id: Retorna um comentário específico
+POST /api/comments: Cria um novo comentário
+PUT /api/comments/:id: Atualiza um comentário existente
+DELETE /api/comments/:id: Exclui um comentário
+Segurança
+Todas as operações exigem autenticação JWT
+Validação de entrada é feita para evitar injeção de SQL e XSS
+Controle de acesso é aplicado para garantir que apenas usuários autorizados possam realizar operações CRUD
+Documentação
+Para mais informações sobre os endpoints, parâmetros e exemplos de uso, consulte o documento da API.
 
-- Instruções para instalação e teste
-  - Para instalar, baixe o arquivo e abra no VsCode
-  - No terminal, instalar Node Modules com o comando 'npm install'
-  - Para rodar a aplicação, operar o seguinte comando no terminal 'npm run dev'
-  - Teste a aplicação no Insomnia, usando as rotas apresentadas em src/routes
+Testes
+A API pode ser testada usando ferramentas como Postman ou Insomnia. Certifique-se de verificar a funcionalidade e o desempenho antes de implantar em um ambiente de produção.
+
+Contribuição
+Sinta-se à vontade para contribuir com melhorias ou correções de bugs
+Abra uma issue para discutir novos recursos ou alterações importantes
+Envie um pull request com suas alterações para revisão
+Licença
+Este projeto está licenciado sob a Licença MIT.
