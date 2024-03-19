@@ -1,14 +1,14 @@
-# SocialConnect API
+# **SocialConnect API**
 
 Este é o repositório da API RESTful desenvolvida para a SocialConnect, uma plataforma de rede social fictícia criada como exercício de desenvolvimento Backend. A API permite aos usuários realizar operações CRUD nas entidades Usuário, Post e Comentário.
 
 ## Requisitos
-  Node.js
-  Express.js
-  SQLite or MySQL
+  - Node.js
+  - Express.js
+  - SQLite or MySQL
   
 ## Instalação
-  Clone o repositório: git clone https://github.com/seu-usuario/socialconnect-api.git
+  Clone o repositório: `git clone https://github.com/seu-usuario/socialconnect-api.git`
   Instale as dependências: npm install
   
 ## Configuração do Banco de Dados
