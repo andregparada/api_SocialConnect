@@ -1,4 +1,4 @@
-<h1 color="blue">SocialConnect API</h1>h1>
+<h1 style="color: blue;">SocialConnect API</h1>
 Este é o repositório da API RESTful desenvolvida para a SocialConnect, uma plataforma de rede social fictícia criada como exercício de desenvolvimento Backend. A API permite aos usuários realizar operações CRUD nas entidades Usuário, Post e Comentário.
 
 Requisitos
